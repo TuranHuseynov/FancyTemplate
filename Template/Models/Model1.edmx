@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TemplateFevralEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TemplateFevralModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Blog">
           <Key>
             <PropertyRef Name="blog_id" />
@@ -51,6 +51,14 @@
           <Property Name="industries_content" Type="nvarchar" MaxLength="400" />
           <Property Name="industries_img" Type="nvarchar" MaxLength="50" />
           <Property Name="industries_url" Type="nvarchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="meni_id" />
+          </Key>
+          <Property Name="meni_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="menu_url" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Messages">
           <Key>
@@ -114,12 +122,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TemplateFevralEntitiesStoreContainer">
+        <EntityContainer Name="TemplateFevralModelStoreContainer">
           <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feature_Boxes" EntityType="Self.Feature_Boxes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Industries" EntityType="Self.Industries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service_Area" EntityType="Self.Service_Area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service_Area_Contents" EntityType="Self.Service_Area_Contents" Schema="dbo" store:Type="Tables" />
@@ -130,11 +139,10 @@
             <End Role="Blog" EntitySet="Blog" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TemplateFevralEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TemplateFevralModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Blog">
           <Key>
             <PropertyRef Name="blog_id" />
@@ -246,7 +254,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="fevral14Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TemplateFevralEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Blogs" EntityType="Self.Blog" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
@@ -261,15 +269,24 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Blog" EntitySet="Blogs" />
           </AssociationSet>
+          <EntitySet Name="Menus" EntityType="TemplateFevralModel.Menu" />
         </EntityContainer>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="meni_id" />
+          </Key>
+          <Property Name="meni_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="menu_url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TemplateFevralEntitiesStoreContainer" CdmEntityContainer="fevral14Entities">
+        <EntityContainerMapping StorageEntityContainer="TemplateFevralModelStoreContainer" CdmEntityContainer="TemplateFevralEntities">
           <EntitySetMapping Name="Blogs">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Blog">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Blog">
               <MappingFragment StoreEntitySet="Blog">
                 <ScalarProperty Name="blog_id" ColumnName="blog_id" />
                 <ScalarProperty Name="blog_title" ColumnName="blog_title" />
@@ -280,7 +297,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Category">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="category_id" ColumnName="category_id" />
                 <ScalarProperty Name="category_name" ColumnName="category_name" />
@@ -288,7 +305,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Contact">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Contact">
               <MappingFragment StoreEntitySet="Contact">
                 <ScalarProperty Name="contact_id" ColumnName="contact_id" />
                 <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
@@ -299,7 +316,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Feature_Boxes">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Feature_Boxes">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Feature_Boxes">
               <MappingFragment StoreEntitySet="Feature_Boxes">
                 <ScalarProperty Name="feature_boxes_id" ColumnName="feature_boxes_id" />
                 <ScalarProperty Name="feature_boxes_title" ColumnName="feature_boxes_title" />
@@ -310,7 +327,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Industries">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Industry">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Industry">
               <MappingFragment StoreEntitySet="Industries">
                 <ScalarProperty Name="industries_id" ColumnName="industries_id" />
                 <ScalarProperty Name="industries_title" ColumnName="industries_title" />
@@ -321,7 +338,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Message">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Message">
               <MappingFragment StoreEntitySet="Messages">
                 <ScalarProperty Name="message_id" ColumnName="message_id" />
                 <ScalarProperty Name="message_name" ColumnName="message_name" />
@@ -332,7 +349,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Service_Area">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Service_Area">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Service_Area">
               <MappingFragment StoreEntitySet="Service_Area">
                 <ScalarProperty Name="service_id" ColumnName="service_id" />
                 <ScalarProperty Name="service_img" ColumnName="service_img" />
@@ -343,7 +360,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Service_Area_Contents">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Service_Area_Contents">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Service_Area_Contents">
               <MappingFragment StoreEntitySet="Service_Area_Contents">
                 <ScalarProperty Name="service_contents_id" ColumnName="service_contents_id" />
                 <ScalarProperty Name="service_contents_title" ColumnName="service_contents_title" />
@@ -353,7 +370,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sliders">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Slider">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Slider">
               <MappingFragment StoreEntitySet="Slider">
                 <ScalarProperty Name="slider_id" ColumnName="slider_id" />
                 <ScalarProperty Name="slider_title" ColumnName="slider_title" />
@@ -364,7 +381,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Testimonials_Slider">
-            <EntityTypeMapping TypeName="TemplateFevralEntities.Testimonials_Slider">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Testimonials_Slider">
               <MappingFragment StoreEntitySet="Testimonials_Slider">
                 <ScalarProperty Name="testimonials_slider_id" ColumnName="testimonials_slider_id" />
                 <ScalarProperty Name="testimonials_slider_icon" ColumnName="testimonials_slider_icon" />
@@ -372,6 +389,15 @@
                 <ScalarProperty Name="testimonials_slider_author" ColumnName="testimonials_slider_author" />
                 <ScalarProperty Name="testimonials_slider_position" ColumnName="testimonials_slider_position" />
                 <ScalarProperty Name="testimonials_slider_img" ColumnName="testimonials_slider_img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="TemplateFevralModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="menu_url" ColumnName="menu_url" />
+                <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+                <ScalarProperty Name="meni_id" ColumnName="meni_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

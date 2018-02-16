@@ -45,7 +45,7 @@
             @Html.DisplayFor(modelItem => item.testimonials_slider_position)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.testimonials_slider_img)
+            <img src="~/Upload/@item.testimonials_slider_img" style="width:100px; height:100px;" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.testimonials_slider_id }) |

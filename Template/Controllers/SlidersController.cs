@@ -13,7 +13,7 @@ namespace Template.Controllers
 {
     public class SlidersController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Sliders
         public ActionResult Index()
@@ -59,7 +59,7 @@ namespace Template.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "slider_id,slider_title,slider_img,slider_first_url,slider_second_url")] Slider slider, HttpPostedFileBase slider_img)
+        public ActionResult Create([Bind(Include = "slider_id,slider_title,slider_first_url,slider_second_url")] Slider slider, HttpPostedFileBase slider_img)
         {
             if (!Check_Admin())
             {

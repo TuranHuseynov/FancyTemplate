@@ -12,7 +12,7 @@ namespace Template.Controllers
 {
     public class CategoriesController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Categories
         public ActionResult Index()

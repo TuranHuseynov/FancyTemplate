@@ -12,7 +12,7 @@ namespace Template.Controllers
 {
     public class ContactsController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Contacts
         public ActionResult Index()

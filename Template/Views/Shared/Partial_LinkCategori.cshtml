@@ -1,0 +1,13 @@
+﻿@model Template.ViewModel.MyModel
+
+
+    <ul class="nav">
+        @foreach (var item in Model._category)
+    {
+        <li class="nav-item">
+            <a class="nav-link active" href="#">@item.category_name</a>
+        </li>
+
+    }
+    </ul>
+

@@ -13,7 +13,7 @@ namespace Template.Controllers
 {
     public class IndustriesController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Industries
         public ActionResult Index()
@@ -59,7 +59,7 @@ namespace Template.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "industries_id,industries_title,industries_content,industries_img,industries_url")] Industry industry, HttpPostedFileBase industries_img)
+        public ActionResult Create([Bind(Include = "industries_id,industries_title,industries_content,industries_url")] Industry industry, HttpPostedFileBase industries_img)
         {
 
             if (!Check_Admin())

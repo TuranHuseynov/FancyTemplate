@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Template.Models;
 
+
 namespace Template.Controllers
 {
     public class Testimonials_SliderController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Testimonials_Slider
         public ActionResult Index()
@@ -58,7 +60,7 @@ namespace Template.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "testimonials_slider_id,testimonials_slider_icon,testimonials_slider_content,testimonials_slider_author,testimonials_slider_position,testimonials_slider_img")] Testimonials_Slider testimonials_Slider)
+        public ActionResult Create([Bind(Include = "testimonials_slider_id,testimonials_slider_icon,testimonials_slider_content,testimonials_slider_author,testimonials_slider_position")] Testimonials_Slider testimonials_Slider, HttpPostedFileBase testimonials_slider_img)
         {
             if (!Check_Admin())
             {
@@ -66,6 +68,13 @@ namespace Template.Controllers
             }
             if (ModelState.IsValid)
             {
+                var file_name = Path.GetFileName(testimonials_slider_img.FileName);
+                if (testimonials_slider_img.ContentLength > 0)
+                {
+                    var file_src = Path.Combine(Server.MapPath("/Upload"), file_name);
+                    testimonials_slider_img.SaveAs(file_src);
+                }
+                testimonials_Slider.testimonials_slider_img = file_name;
                 db.Testimonials_Slider.Add(testimonials_Slider);
                 db.SaveChanges();
                 return RedirectToAction("Index");

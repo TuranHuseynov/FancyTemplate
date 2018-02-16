@@ -9,7 +9,7 @@ namespace Template.Controllers
 {
     public class AdminkaController : Controller
     {
-        fevral14Entities db = new fevral14Entities();
+        TemplateFevralEntities db = new TemplateFevralEntities();
         // GET: Adminka
         public ActionResult Index()
         {

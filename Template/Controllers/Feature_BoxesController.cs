@@ -12,7 +12,7 @@ namespace Template.Controllers
 {
     public class Feature_BoxesController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Feature_Boxes
         public ActionResult Index()

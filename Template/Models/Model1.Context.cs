@@ -13,10 +13,10 @@ namespace Template.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class fevral14Entities : DbContext
+    public partial class TemplateFevralEntities : DbContext
     {
-        public fevral14Entities()
-            : base("name=fevral14Entities")
+        public TemplateFevralEntities()
+            : base("name=TemplateFevralEntities")
         {
         }
     
@@ -35,5 +35,6 @@ namespace Template.Models
         public virtual DbSet<Service_Area_Contents> Service_Area_Contents { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
         public virtual DbSet<Testimonials_Slider> Testimonials_Slider { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
     }
 }

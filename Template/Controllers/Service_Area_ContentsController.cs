@@ -12,7 +12,7 @@ namespace Template.Controllers
 {
     public class Service_Area_ContentsController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Service_Area_Contents
         public ActionResult Index()

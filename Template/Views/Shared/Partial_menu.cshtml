@@ -1,0 +1,12 @@
+﻿@model Template.ViewModel.MyModel
+
+
+
+<ul class="navbar-nav mr-auto">
+    @foreach (var item in Model._menu)
+    {
+        <li class="nav-item active"><a class="nav-link" style="margin-left:20px; font-size:1.4em; color:darkred;"  href="@item.menu_url">@item.menu_name </a></li>
+    }
+</ul>
+
+

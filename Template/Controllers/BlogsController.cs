@@ -13,7 +13,7 @@ namespace Template.Controllers
 {
     public class BlogsController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Blogs
         public ActionResult Index()
@@ -64,7 +64,7 @@ namespace Template.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "blog_id,blog_title,blog_content,blog_img,blog_category_id")] Blog blog,HttpPostedFileBase blog_img)
+        public ActionResult Create([Bind(Include = "blog_id,blog_title,blog_content,blog_category_id")] Blog blog,HttpPostedFileBase blog_img)
         {
             if (!Check_Admin())
             {

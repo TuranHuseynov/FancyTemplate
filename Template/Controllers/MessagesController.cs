@@ -12,7 +12,7 @@ namespace Template.Controllers
 {
     public class MessagesController : Controller
     {
-        private fevral14Entities db = new fevral14Entities();
+        private TemplateFevralEntities db = new TemplateFevralEntities();
 
         // GET: Messages
         public ActionResult Index()
